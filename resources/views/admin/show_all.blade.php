@@ -63,6 +63,27 @@
             margin: 10px 5px;
             
         }
+        .inp_search{
+            width: 35%;
+            height: 25px;
+            padding: 10px;
+            font-size: 17px;
+            margin-left: 330px;
+            margin-top: 70px;
+            margin-bottom: 70px;
+            border: 1px solid grey;
+            float: left;
+            background-color: darkgrey;
+        }
+        .but_search{
+            float: left;
+            cursor: pointer;
+            width: 60px;
+            height: 45px;
+            margin-left:2px;
+            margin-top: 70px;
+            background-color: green;
+        }
         
         
     </style>
@@ -71,7 +92,13 @@
 
 <button class="back"><a href="{{route('index')}}">Back</a></button>
 <h2>Product Table</h2>
-
+<div>
+                <form action="{{route('search')}}" method="get">
+                    @csrf
+                    <input type="text" placeholder="Search Product...." name ="search" class="inp_search">
+                    <button  type="submit" class="but_search">Search</button> 
+                </form>
+            </div>
 <table>
     <thead>
         <tr>

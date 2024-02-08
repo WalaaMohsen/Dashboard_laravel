@@ -24,6 +24,7 @@ Route::get('/', function () {
     Route::get('delete/{id}',[ProductController::class,'destroy'])->name('destroy');
     Route::get('create_product',[ProductController::class,'Create'])->name('create_product');
     Route::post('store',[ProductController::class,'store'])->name('store');
+    Route::get('search',[ProductController::class,'search'])->name('search');
 
 
 

@@ -8,15 +8,18 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    // index or dashboard for admin  page
     public function dashboard() {
 
         return view('admin.dashboard');
         
     }
+    // display all products in database
     public function show_all(){
         $products = Product::all();
         return view('admin.show_all', compact('products'));
     }
+    // update on any record(product)
     public function update($id){
         $product = Product::FindOrFail($id);
         return view('admin.update',compact('product'));
@@ -29,10 +32,12 @@ class ProductController extends Controller
         return redirect('show_all')->with('success' , 'product updated successfully.');
         
     }
+    // delete record(product)
     public function destroy($id){
         Product::find($id)->delete();
         return redirect('show_all')->with('success' , 'product deleted successfully.');    
     }
+    // add new record(product)
     public function Create() {
         return view('admin.create_product');
         
@@ -51,5 +56,11 @@ class ProductController extends Controller
         ]);
         return redirect('create_product')->with('success' , 'product created successfully.');
     
+    }
+    // search for any product
+    public function search(Request $request){
+        $search = $request->search;
+        $products = Product::where('name','LIKE',"%$search%")->get();
+        return view('admin.show_all',compact('products'));
     }
 }
